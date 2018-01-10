@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  createdBy: MyString
+  name: MyString
+
+two:
+  createdBy: MyString
+  name: MyString

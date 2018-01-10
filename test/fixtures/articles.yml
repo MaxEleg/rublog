@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  createdAt: 2018-01-10
+  title: MyString
+  text: MyString
+  createdBy: MyString
+  categories: MyString
+  views: 1
+
+two:
+  createdAt: 2018-01-10
+  title: MyString
+  text: MyString
+  createdBy: MyString
+  categories: MyString
+  views: 1

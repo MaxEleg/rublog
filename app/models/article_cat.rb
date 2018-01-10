@@ -1,0 +1,2 @@
+class ArticleCat < ApplicationRecord
+end
