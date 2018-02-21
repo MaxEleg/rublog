@@ -3,10 +3,11 @@ class ArticlesController < ApplicationController
 
 
   def index
+
     if params[:categories]
       @articles = Article.where(categories: params[:categories])
     else
-      @articles = Article.all
+      @articles = Article.page(params[:page]).per(5)
     end
   end
 
