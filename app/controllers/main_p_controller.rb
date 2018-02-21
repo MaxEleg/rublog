@@ -1,5 +1,5 @@
 class MainPController < ApplicationController
   def index
-    @variable = 4
+    @articles = Article.all
   end
 end
