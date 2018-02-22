@@ -10,7 +10,11 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = Article.new 
+    if signed_in?
+      @article.createdBy = current_user.email
+      @article.save
+    end
   end
 
   def edit
@@ -18,7 +22,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -59,6 +62,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :text,:categories,:current_user)
+      params.require(:article).permit(:title, :text,:categories,:createdBy)
     end
 end

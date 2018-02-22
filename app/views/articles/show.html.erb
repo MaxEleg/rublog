@@ -14,5 +14,12 @@
   <%= @article.categories %>
 </p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<p>
+  <strong>Created by :</strong>
+  <%= @article.createdBy %>
+  
+</p>
+<%= if @article.createdBy == current_user.email  
+	 link_to 'Edit |', edit_article_path(@article) 
+ 	end %> 
 <%= link_to 'Back', articles_path %>
