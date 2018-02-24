@@ -17,7 +17,9 @@
         </thead>
         <tbody>
           <td><%= article.text %></td>
-
+          <td><% if article.image? %>
+              <%= image_tag article.image.thumb.url %>
+          <% end %><td>
           <td><%= link_to 'Show', article %></td>
           <% if signed_in?  %>
           <td><%= if article.createdBy == current_user.email  
