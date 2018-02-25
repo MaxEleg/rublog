@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :articles
 
   post 'comment', to: 'comments#new'
-
+  root 'articles#index'
+  
   resources :articles do
     member do
       put "like" => "articles#upvote"
