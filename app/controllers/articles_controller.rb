@@ -5,17 +5,24 @@ class ArticlesController < ApplicationController
   def index
 
     if params[:categories]
-      @articles = Article.where(categories: params[:categories]).order(:created_at => :asc)
+      @articles = Article.where(categories: params[:categories]).order(:created_at => :asc).page(params[:page]).per(5).order(:created_at => :desc)
+      @cats = Article.select(:categories).where.not(categories: nil).distinct
     else
       @articles = Article.page(params[:page]).per(5).order(:created_at => :desc)
+      @cats = Article.select(:categories).where.not(categories: nil).distinct
     end
   end
 
   def show
   end
 
+  def best
+
+  end
+
+
   def new
-    @article = Article.new 
+    @article = Article.new
     if signed_in?
       @article.createdBy = current_user.email
       @article.save
