@@ -319,6 +319,7 @@ iframe {
   background: transparent;
   height: 60px;
   padding: 0 20px;
+  background-color: rgb(242,242,242);
 }
 /*------------------------------------------------------------------
 [ Focus Input ]*/
