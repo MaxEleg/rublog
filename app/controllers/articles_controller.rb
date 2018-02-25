@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   private
     def set_article
       @article = Article.find(params[:id])
-      @comments = Comment.all
+      @comments = Comment.where("articleId = " + params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

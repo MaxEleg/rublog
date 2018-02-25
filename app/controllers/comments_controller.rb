@@ -4,21 +4,17 @@ class CommentsController < ApplicationController
   def new
     comment = Comment.new
 
-    p params
-
     if signed_in?
       comment.createdBy = current_user.id
       comment.text = params[:text]
       comment.articleId = params[:articleId]
       comment.save
-
-      print
     end
 
     if params[:articleId]
       redirect_to("/articles/" + params[:articleId])
     else
-      redirect_to("/articles")
+      redirect_to("/users/signed_up")
     end
 
   end
