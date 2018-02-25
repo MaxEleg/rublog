@@ -14,8 +14,6 @@
     </div>
 
     <ul class="nav navbar-nav">
-
-      <li><a href="/articles/best">Best</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categorie
           <span class="caret"></span></a>
@@ -27,8 +25,10 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <% if !signed_in?  %>
+        <li><a target="_blank" href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Créer un compte</a></li>
+        <li><a target="_blank" href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>
