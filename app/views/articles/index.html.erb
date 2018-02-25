@@ -41,7 +41,10 @@
 
       <% @articles.each do |article| %>
         <div style="background-color: rgb(247,247,247)" class="col-sm-6">
-          <img class="img-responsive thumbnail" src="<% if article.image? %> <%= image_tag article.image.thumb.url %> <% end %>" alt="">
+          <% if article.image? %>
+            <img class="img-responsive thumbnail" src="<%= image_tag article.image.thumb.url %> " alt="">
+          <% end %>
+          
           <div class="caption">
             <h4><a href="#">Article title</a></h4>
             <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
