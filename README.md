@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Utilisation de Rublog :
 
-Things you may want to cover:
+* 1- Création/Authentification de compte
+* 2- Ajouter un article
+* 3- Commenter un article
+* 4- Liker/disliker un article
+* 5- Editer l'un de mes articles (droit requis)
+* 6- Supprimer l'un de mes articles (droit requis)
+* 7- Filtrer les articles par catégorie (navbar de l'index)
 
-* Ruby version
+Dépot GITHUB de l'équipe :
 
-* System dependencies
+https://github.com/MaxEleg/rublog
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
