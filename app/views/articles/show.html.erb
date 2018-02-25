@@ -27,4 +27,19 @@
 	 	link_to 'Edit |', edit_article_path(@article) 
  		end %> 
  <% end %> 
+
 <%= link_to 'Back', articles_path %>
+
+<%= form_tag "/comment", method: "post" do %>
+  <input type="text" name="text" />
+  <input type="hidden" name="articleId" value="<%= params[:id] %>" />
+  <input type="submit" value="Ajouter le commentaire" />
+<% end %>
+
+<% @comments.each do |comment| %>
+  <div>
+    <b><%= User.find(comment.createdBy).email %></b>
+    => <%= comment.text %>
+
+  </div>
+<% end %>
