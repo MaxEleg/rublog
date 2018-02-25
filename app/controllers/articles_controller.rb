@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy,:upvote,:downvote]
 
 
   def index
 
     if params[:categories]
-      @articles = Article.where(categories: params[:categories])
+      @articles = Article.where(categories: params[:categories]).order(:created_at => :asc)
     else
-      @articles = Article.page(params[:page]).per(5)
+      @articles = Article.page(params[:page]).per(5).order(:created_at => :desc)
     end
   end
 
@@ -58,6 +58,15 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def upvote
+    @article.upvote_from current_user
+    redirect_to article_path
+  end
+
+  def downvote
+    @article.downvote_from current_user
+    redirect_to article_path
   end
 
   private
