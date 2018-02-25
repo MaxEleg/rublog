@@ -37,43 +37,38 @@
 
 <h1>Articles</h1>
 <%= paginate @articles%>
-<table>
-    <% @articles.each do |article| %>
-      <tr>
-        <thead>
-          <tr>
-            <th><%= article.title %></th>
+    <div class="container">
+
+      <% @articles.each do |article| %>
+        <div style="background-color: rgb(247,247,247)" class="col-sm-6">
+          <img class="img-responsive thumbnail" src="<% if article.image? %> <%= image_tag article.image.thumb.url %> <% end %>" alt="">
+          <div class="caption">
+            <h4><a href="#">Article title</a></h4>
             <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
             <span class ="badge"><%= article.get_upvotes.size %> </span>
             <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden=""true></span>
             <span class ="badge"><%= article.get_downvotes.size %> </span>
-            <th colspan="3"></th>
-          </tr>
-           <tr>
-            <th><%= article.categories %></th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
+            <div>
+              <button>Categorie : <%= article.categories %> </button>
+            </div>
 
+            <div>
+              <button>Ecrit par : <%= article.createdBy %></button>
+            </div>
 
-          <td><%= article.text %></td>
-          <td><% if article.image? %>
-              <%= image_tag article.image.thumb.url %>
-          <% end %><td>
-          <td><%= link_to 'Show', article %></td>
-          <% if signed_in?  %>
-          <td><%= if article.createdBy == current_user.email  
-            link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } end %></td>
-
-          <% end %>
-        </tbody>
-
-      </tr>
-
-    <% end %>
-</table>
-
+            <% if signed_in?  %>
+              <div>
+                <%= if article.createdBy == current_user.email  
+                link_to 'Detruire', article, method: :delete, data: { confirm: 'Are you sure?' } end %>
+              </div>
+            <% end %>
+            <div>
+              <%= link_to "Lire l'article", article %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 <br>
 
-<%= link_to 'New article', new_article_path %>
+<%= link_to 'Créer un article', new_article_path, class:"btn btn-success" %>
