@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :main_p
 
+  get "articles/best" => "articles#best"
 
   devise_for :users
   resources :users

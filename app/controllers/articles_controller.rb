@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
 
 
   def index
-
     if params[:categories]
       @articles = Article.where(categories: params[:categories]).order(:created_at => :asc).page(params[:page]).per(5).order(:created_at => :desc)
       @cats = Article.select(:categories).where.not(categories: nil).distinct
@@ -17,9 +16,15 @@ class ArticlesController < ApplicationController
   end
 
   def best
-
+    @articles = Article.page(params[:page]).per(5).order(:cached_votes_up=> :desc)
+    @cats = Article.select(:categories).where.not(categories: nil).distinct
+    render "index"
   end
 
+  def worst
+    @articles = Article.page(params[:page]).per(5).order(:cached_votes_down=> :desc)
+    @cats = Article.select(:categories).where.not(categories: nil).distinct
+  end
 
   def new
     @article = Article.new
