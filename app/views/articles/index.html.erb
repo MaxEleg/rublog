@@ -40,13 +40,13 @@
     <div class="container">
 
       <% @articles.each do |article| %>
-        <div style="background-color: rgb(247,247,247)" class="col-sm-6">
+        <div style="background-color: rgb(247,247,247);padding:4px;" class="col-sm-5">
           <% if article.image? %>
-            <img class="img-responsive thumbnail" src="<%= image_tag article.image.thumb.url %> " alt="">
+            <%= image_tag(article.image.thumb.url, size:"700x350", class:"img-responsive thumbnail", alt: "") %>
           <% end %>
           
           <div class="caption">
-            <h4><a href="#">Article title</a></h4>
+            <h3>Article title</h3>
             <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
             <span class ="badge"><%= article.get_upvotes.size %> </span>
             <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden=""true></span>

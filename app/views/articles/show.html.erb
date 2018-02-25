@@ -5,49 +5,26 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div style="text-align: center;">
 <p id="notice"><%= notice %></p>
+<div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<% if @article.image? %>
+  <center>
+    <%= image_tag(@article.image.thumb.url, size:"700x350", class:"img-responsive thumbnail", alt: "") %>
+  </center>
+<% end %>
 
-<p>
+</div>
+
+<h1><%= @article.title %></h1>
+
+<p style="font-size:22px;padding-bottom: 14px;color:white;">
   <%= @article.text %>
-  <% if @article.image? %>
-    <%= image_tag @article.image.thumb.url %>
-  <% end %>
 </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @article.categories %>
-</p>
-
-<p>
-  <strong>Created by :</strong>
-  <%= @article.createdBy %>
-  
-</p>
-<% if signed_in?  %>
-	<%= if @article.createdBy == current_user.email  
-	 	link_to 'Edit |', edit_article_path(@article) 
- 		end %> 
- <% end %> 
-
-<%= form_tag "/comment", method: "post" do %>
-  <input type="text" name="text" />
-  <input type="hidden" name="articleId" value="<%= params[:id] %>" />
-  <input type="submit" value="Ajouter le commentaire" />
-<% end %>
-
-<% @comments.each do |comment| %>
-  <div>
-    <b><%= User.find(comment.createdBy).email %></b>
-    => <%= comment.text %>
-
-  </div>
-<% end %>
+<div style="padding-bottom: 12px;">
 
 <%=link_to like_article_path(@article), class: "like" ,  method: :put  do  %>
   <button type="button" class  ="btn btn-info" aria-label="Left Align">
@@ -62,5 +39,51 @@
     <span class ="badge"><%= @article.get_downvotes.size %> </span>
   </button>
 <% end %>
+</div>
 
-<%= link_to 'Back', articles_path %>
+<p>
+  <strong>Categorie:</strong>
+  <%= @article.categories %>
+</p>
+
+<p>
+  <strong>Rédigé par :</strong>
+  <%= @article.createdBy %>
+  
+</p>
+<% if signed_in?  %>
+	<%= if @article.createdBy == current_user.email  
+	 	link_to 'Editer |', edit_article_path(@article) 
+ 		end %> 
+ <% end %> 
+
+<%= form_tag "/comment", method: "post" do %>
+  <textarea name="text" style="width:55%;height: 120px;"></textarea>
+  <input type="hidden" name="articleId" value="<%= params[:id] %>" />
+  
+  <div>
+    <% if signed_in?  %>
+      <input class="btn btn-success" type="submit" value="Ajouter le commentaire" />
+    <% end %>
+    <% if !signed_in?  %>
+      <span style="color:red;font-weight: bold;">Vous devez être connecté pour pouvoir commenter un article</span>
+    <% end %>
+  </div>
+<% end %>
+
+
+<br><br>
+
+
+<h3>Derniers commentaires : </h3>
+
+<% @comments.each do |comment| %>
+  <div>
+    <b><%= User.find(comment.createdBy).email %></b>
+     : <%= comment.text %>
+
+  </div>
+<% end %>
+
+<%= link_to "Retour à la page d'acceuil", articles_path %><br/>
+</div>
